@@ -7,6 +7,7 @@ import urllib
 import pprint
 import tarfile
 import tensorflow as tf
+import PIL
 
 import datetime
 import numpy as np
@@ -53,8 +54,16 @@ def save_images(images, height, width, n_row, n_col,
   while os.path.exists(os.path.join(directory, filename_tmplte % (prefix, i))):
      i += 1
   filename = filename_tmplte % (prefix, i)
-  scipy.misc.toimage(images, cmin=cmin, cmax=cmax) \
-      .save(os.path.join(directory, filename))
+
+  # Eric - pillow doesn't work w {0, 1} bit images. need byte images w uint8
+  images = images.astype(np.uint8) * 255
+  image_obj = PIL.Image.fromarray(images, 'L')
+
+  #scipy.misc.toimage(images, cmin=cmin, cmax=cmax) \
+  #    .save(os.path.join(directory, filename))
+  
+  image_obj.save(os.path.join(directory, filename))
+
   return os.path.join(directory, filename)
 def occlude(images, height, width):
     assert images.shape == (len(images), height, width, 1), 'shape doesn\'t match expected shape'

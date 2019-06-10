@@ -8,6 +8,9 @@ import tensorflow as tf
 from tensorflow.contrib.rnn.python.ops import core_rnn_cell
 from tensorflow.examples.tutorials.mnist import input_data
 from tensorflow.contrib.layers import variance_scaling_initializer
+from tensorflow.python.ops import array_ops
+from tensorflow.python.ops import math_ops
+from tensorflow.python.ops import random_ops
 
 WEIGHT_INITIALIZER = tf.contrib.layers.xavier_initializer()
 #WEIGHT_INITIALIZER = tf.uniform_unit_scaling_initializer()
