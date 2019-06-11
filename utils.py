@@ -38,7 +38,7 @@ def show_all_variables():
   print("[Total] variable size: %s" % "{:,}".format(total_count))
 
 def get_timestamp():
-  now = datetime.datetime.now(dateutil.tz.tzlocal())
+  now = datetime.datetime.now()
   return now.strftime('%Y_%m_%d_%H_%M_%S')
 
 def binarize(images):
